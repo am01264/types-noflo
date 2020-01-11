@@ -33,7 +33,7 @@ declare module "noflo" {
 
             has(ports? : SingleOrArray<_InPorts>, validator? : (packet : IP) => boolean) : boolean;
             hasData(ports? : SingleOrArray<_InPorts>, validator? : (packet : any) => boolean) : boolean;
-            hasStream(ports? : SingleOrArray<_InPorts>, validator? : (stream) => boolean) : boolean;
+            hasStream(ports? : SingleOrArray<_InPorts>, validator? : (stream : any) => boolean) : boolean;
             get( ...ports : Array<PortRef<_InPorts> | ArrayPortRef<_InPorts>> ) : IP
             getData( ...ports : Array<PortRef<_InPorts> | ArrayPortRef<_InPorts>> ) : any
             getStream( ...ports : Array<PortRef<_InPorts> | ArrayPortRef<_InPorts>> ) : IP[]
@@ -74,10 +74,10 @@ declare module "noflo" {
 
     export class OutPorts<_PortNames extends string = string> extends Ports<_PortNames> {
         connect(name : string, socketId : any) : void;
-        beginGroup(name : string, group, socketId) : void;
-        send(name : string, data : any, socketId) : void;
-        endGroup(name : string, socketId) : void;
-        disconnect(name : string, socketId) : void;
+        beginGroup(name : string, group : any, socketId : any) : void;
+        send(name : string, data : any, socketId : any) : void;
+        endGroup(name : string, socketId : any) : void;
+        disconnect(name : string, socketId : any) : void;
     }
 
     namespace Ports {
