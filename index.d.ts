@@ -32,7 +32,7 @@ declare module "noflo" {
         export interface ProcessInput<_InPorts extends string = string> {
 
             has(ports? : SingleOrArray<_InPorts>, validator? : (packet : IP) => boolean) : boolean;
-            hasData(ports? : SingleOrArray<_InPorts>, validator? : (packet : any) => boolean) : boolean;
+            hasData(...ports : Array<_InPorts>) : boolean;
             hasStream(ports? : SingleOrArray<_InPorts>, validator? : (stream : any) => boolean) : boolean;
             get( ...ports : Array<PortRef<_InPorts> | ArrayPortRef<_InPorts>> ) : IP
             getData( ...ports : Array<PortRef<_InPorts> | ArrayPortRef<_InPorts>> ) : any
@@ -137,6 +137,26 @@ declare module "noflo" {
             | 'string' 
 
     }
+
+    interface CallbackOptions {
+        name : string;
+        baseDir : string;
+        loader : any /* ComponentLoader */,
+        raw : boolean;
+    }
+
+    
+    type PortInputs = {
+        [port: string]: any;
+    };
+
+    type NodeCallback<T> = (err? : Error | null, result? : T) => void;
+
+    interface CallbackResponse {
+        ( inputs : PortInputs, callback : NodeCallback<any> ) : void;
+    }
+
+    export function asCallback(component : string, options? : Partial<CallbackOptions>) : CallbackResponse;
 
 }
 
