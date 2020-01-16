@@ -2,6 +2,9 @@ declare module "noflo" {
 
     import { EventEmitter } from "events"
 
+    // TODO: namespace Network
+    // TODO: namespace Graph (import from fbp-graph)
+
     class Component<_InPorts extends string = "in" | string, _OutPorts extends string = "out" | "error" | string> extends EventEmitter {
         description : string;
         icon : string;
