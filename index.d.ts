@@ -86,7 +86,7 @@ declare module "noflo" {
     namespace Ports {
 
         export interface PortOptions {
-            datatype : IP.DataType;
+            datatype : IP.DataType | string;
             description: string;
             canAttach : boolean
             addressable: boolean;
