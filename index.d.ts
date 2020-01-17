@@ -6,6 +6,7 @@ declare module "noflo" {
     // TODO: namespace Graph (import from fbp-graph)
 
     class Component<_InPorts extends string = "in" | string, _OutPorts extends string = "out" | "error" | string> extends EventEmitter {
+        name : string;
         description : string;
         icon : string;
 
@@ -65,6 +66,8 @@ declare module "noflo" {
     }
 
     class Ports<_PortNames extends string> extends EventEmitter {
+        ports : { [key : string ] : Ports.PortOptions }
+
         constructor( ports : Ports.PortConstructorOptions<_PortNames> )
         add( name : _PortNames, options? : Partial<Ports.PortOptions>) : this
         remove( name : _PortNames ) : this
