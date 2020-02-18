@@ -130,33 +130,8 @@ declare module "noflo" {
 
     // TODO: Add sockets
 
-    export class IP<_Data = any> {
-        type : 'data' | 'openBracket' | 'closeBracket';
-        data : _Data;
-        datatype: IP.DataType
-
-        clone() : IP<_Data>;
-        drop() : void;
-    }
-
-    namespace IP {
-
-        export type DataType 
-            = 'all' 
-            | 'array' 
-            | 'bang' 
-            | 'buffer' 
-            | 'boolean' 
-            | 'color' 
-            | 'date' 
-            | 'function' 
-            | 'int' 
-            | 'number' 
-            | 'object'
-            | 'stream'
-            | 'string' 
-
-    }
+    import {IP} from "noflo/lib/IP";
+    export {IP};
 
     interface CallbackOptions {
         name : string;
