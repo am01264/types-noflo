@@ -15,7 +15,7 @@ declare module "noflo/lib/IP" {
         datatype: IP.DataType
         schema: string | null;
         
-        constructor(type : IP.Type, data : _Data, options : {[key : string] : any} );
+        constructor(type : IP.Type, data : _Data, options : IP.ConstructorOptions );
         
         clone() : IP<_Data>;
         move(owner : Component) : void;
@@ -43,6 +43,8 @@ declare module "noflo/lib/IP" {
             | 'object'
             | 'stream'
             | 'string' 
+
+        type ConstructorOptions = {[key : string] : any};
 
     }
 
