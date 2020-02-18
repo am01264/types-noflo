@@ -1,11 +1,14 @@
 declare module "noflo" {
 
     import { EventEmitter } from "events"
+    import { Graph } from "fbp-graph";
+    export { Graph, Journal } from "fbp-graph";
 
     // TODO: namespace Network
-    // TODO: namespace Graph (import from fbp-graph)
 
-    class Component<_InPorts extends string = "in" | string, _OutPorts extends string = "out" | "error" | string> extends EventEmitter {
+    export function isBrowser() : boolean;
+
+    export class Component<_InPorts extends string = "in" | string, _OutPorts extends string = "out" | "error" | string> extends EventEmitter {
         name : string;
         description : string;
         icon : string;
@@ -22,12 +25,12 @@ declare module "noflo" {
 
         export type ProcessHandler<_InPorts extends string, _OutPorts extends string> = ( input : ProcessInput<_InPorts>, output : ProcessOutput<_OutPorts> ) => void
 
-        export type ConstructorOptions<_InPorts extends string, _OutPorts extends string> = {
+        export type ConstructorOptions<_InPorts extends string, _OutPorts extends string> = Partial<{
             inPorts : InPorts<_InPorts> | Ports.PortConstructorOptions<_InPorts>,
             outPorts : OutPorts<_OutPorts> | Ports.PortConstructorOptions<_OutPorts>,
             icon : string,
             description: string
-        }
+        }>
 
         type SingleOrArray<T> = T | T[];
         type PortRef<PortName extends string> = PortName;
@@ -66,7 +69,6 @@ declare module "noflo" {
     }
 
     class Ports<_PortNames extends string> extends EventEmitter {
-        ports : { [key : string ] : Ports.PortOptions }
 
         constructor( ports : Ports.PortConstructorOptions<_PortNames> )
         add( name : _PortNames, options? : Partial<Ports.PortOptions>) : this
@@ -74,11 +76,14 @@ declare module "noflo" {
     }
 
     export class InPorts<_PortNames extends string = string> extends Ports<_PortNames> {
+        ports : { [key : string] : Ports.InPort }
         // on(name : string, event : string, callback : (...args : any[]) => void) : this;
         // once(name : string, event : string, callback : (...args : any[]) => void) : this;
     }
 
     export class OutPorts<_PortNames extends string = string> extends Ports<_PortNames> {
+        ports : { [key : string] : Ports.OutPort }
+
         connect(name : string, socketId : any) : void;
         beginGroup(name : string, group : any, socketId : any) : void;
         send(name : string, data : any, socketId : any) : void;
@@ -87,6 +92,14 @@ declare module "noflo" {
     }
 
     namespace Ports {
+
+        class BasePort{
+            options : Ports.PortOptions
+            constructor( options : Ports.PortOptions );
+        }
+    
+        export interface InPort extends BasePort {}
+        export interface OutPort extends BasePort {}
 
         export interface PortOptions {
             datatype : IP.DataType | string;
@@ -115,6 +128,7 @@ declare module "noflo" {
 
     }
 
+    // TODO: Add sockets
 
     export class IP<_Data = any> {
         type : 'data' | 'openBracket' | 'closeBracket';
@@ -147,22 +161,62 @@ declare module "noflo" {
     interface CallbackOptions {
         name : string;
         baseDir : string;
-        loader : any /* ComponentLoader */,
+        loader : ComponentLoader;
         raw : boolean;
     }
 
+    type CreateNetworkOptions = Partial<{ delay : boolean, subscribeGraph : boolean }>;
+    type NetworkCallback = (err : Error | null, network? : Network ) => void;
+    export function createNetwork(graph : Graph, callback : NetworkCallback) : Network;
+    export function createNetwork(graph : Graph, options : CreateNetworkOptions, callback : NetworkCallback) : Network;
     
+    type LoadFileOptions = Partial<{ baseDir : string }> & CreateNetworkOptions;
+    export function loadFile( file : string, callback : NetworkCallback ); 
+    export function loadFile( file : string, options : LoadFileOptions, callback : NetworkCallback ); 
+
+    export function saveFile( graph : Graph, file : string, callback : (err : Error | null, filename? : string) => void) : void;
+
+
     type PortInputs = {
         [port: string]: any;
     };
 
-    type NodeCallback<T> = (err? : Error | null, result? : T) => void;
+    type NofloCallback<T> = (err : Error | null, result? : T) => void;
 
     interface CallbackResponse {
-        ( inputs : PortInputs, callback : NodeCallback<any> ) : void;
+        ( inputs : PortInputs, callback : NofloCallback<any> ) : void;
     }
 
     export function asCallback(component : string, options? : Partial<CallbackOptions>) : CallbackResponse;
+    
+    interface FunctionRegular<ResultType> {
+        <T0>(arg0 : T0) : ResultType
+        <T0, T1>(arg0 : T0, arg1 : T1) : ResultType
+        <T0, T1, T2>(arg0 : T0, arg1 : T1, arg2 : T2) : ResultType
+        <T0, T1, T2, T3>(arg0 : T0, arg1 : T1, arg2 : T2, arg3 : T3) : ResultType
+        <T0, T1, T2, T3, T4>(arg0 : T0, arg1 : T1, arg2 : T2, arg3 : T3, arg4 : T4) : ResultType
+    }
+
+    interface FunctionPromise<ResultType> {
+        <T0>(arg0 : T0) : Promise<ResultType>
+        <T0, T1>(arg0 : T0, arg1 : T1) : Promise<ResultType>
+        <T0, T1, T2>(arg0 : T0, arg1 : T1, arg2 : T2) : Promise<ResultType>
+        <T0, T1, T2, T3>(arg0 : T0, arg1 : T1, arg2 : T2, arg3 : T3) : Promise<ResultType>
+        <T0, T1, T2, T3, T4>(arg0 : T0, arg1 : T1, arg2 : T2, arg3 : T3, arg4 : T4) : Promise<ResultType>
+    }
+    
+    interface FunctionCallback<ResultType> {
+        <T0>(arg0 : T0, callback : NofloCallback<ResultType>) : void
+        <T0, T1>(arg0 : T0, arg1 : T1, callback : NofloCallback<ResultType>) : void
+        <T0, T1, T2>(arg0 : T0, arg1 : T1, arg2 : T2, callback : NofloCallback<ResultType>) : void
+        <T0, T1, T2, T3>(arg0 : T0, arg1 : T1, arg2 : T2, arg3 : T3, callback : NofloCallback<ResultType>) : void
+        <T0, T1, T2, T3, T4>(arg0 : T0, arg1 : T1, arg2 : T2, arg3 : T3, arg4 : T4, callback : NofloCallback<ResultType>) : void
+    } 
+    
+    type AsComponentFunction<B> = FunctionRegular<B> | FunctionPromise<B> | FunctionCallback<B>
+    type AsComponentOptions = Partial<{ required : boolean }>;
+
+    export function asComponent<ResultType>(func : AsComponentFunction<ResultType>, options : Component.ConstructorOptions<string, string>) : Component
 
 }
 
