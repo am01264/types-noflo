@@ -8,6 +8,7 @@
 /// <reference path="OutPort.d.ts" />
 /// <reference path="Ports.d.ts" />
 /// <reference path="ComponentLoader.d.ts" />
+/// <reference path="LegacyNetwork.d.ts" />
 
 declare module "noflo" {
     
@@ -15,12 +16,10 @@ declare module "noflo" {
     import { Graph } from "fbp-graph";
     export { Graph, Journal } from "fbp-graph";
     
-    // TODO: Network
     export {Network} from "noflo/lib/LegacyNetwork"
 
     export function isBrowser() : boolean;
     
-    // TODO: ComponentLoader
     export {ComponentLoader} from "noflo/lib/ComponentLoader"
  
     export {Component} from "noflo/lib/Component";
@@ -33,6 +32,7 @@ declare module "noflo" {
 
     export {IP} from "noflo/lib/IP";
 
+    // TODO: Network
     import {Network} from "noflo/lib/Network"
     type CreateNetworkOptions = Partial<{ delay : boolean, subscribeGraph : boolean }>;
     type NetworkCallback = (err : Error | null, network? : Network ) => void;
