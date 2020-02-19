@@ -3,10 +3,6 @@
 /// <reference path="Component.d.ts" />
 /// <reference path="IP.d.ts" />
 
-import { Socket } from "dgram";
-
-
-
 declare module "noflo/lib/BaseNetwork" {
     
     import {EventEmitter} from "events";
@@ -54,7 +50,7 @@ declare module "noflo/lib/BaseNetwork" {
         getNode( id : Graph.NodeID ) : BaseNetwork.Process;
 
         connect( callback : NofloCallback ) : void;
-        connectPort( socket : Socket, process : BaseNetwork.Process, port : Ports.PortID, index : number, inbound : boolean, callback : NofloCallback )  : void;
+        connectPort( socket : InternalSocket, process : BaseNetwork.Process, port : Ports.PortID, index : number, inbound : boolean, callback : NofloCallback )  : void;
         
         subscribeSubgraph( node : Graph.Node ) : void;
         subscribeSocket( socket : InternalSocket, source : Node) : void;
