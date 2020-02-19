@@ -11,7 +11,7 @@ declare module "noflo/src/lib/BaseNetwork" {
     import {ComponentLoader} from "noflo/src/lib/ComponentLoader";
     import {Component} from "noflo/src/lib/Component"
     import {Ports} from "noflo/src/lib/Ports";
-    import {Graph, Callback} from "fbp-graph/lib/graph";
+    import {Graph} from "fbp-graph";
 
     type NofloCallback = (err : Error | null) => void;
     type NofloCallbackWithResult<T> = (err : Error | null, result : T) => void;
@@ -41,10 +41,10 @@ declare module "noflo/src/lib/BaseNetwork" {
         
         bufferedEmit(event : string, payload : any) : void;
 
-        load( metadata : BaseNetwork.PropertyMap, callback : Callback<unknown> ) : unknown;
+        load( metadata : BaseNetwork.PropertyMap, callback : NofloCallbackWithResult<unknown> ) : unknown;
         
-        addNode( node : Graph.Node, callback : Callback<unknown> ) : void;
-        addNode( node : Graph.Node, options : BaseNetwork.PropertyMap, callback : Callback<unknown> ) : void;
+        addNode( node : Graph.Node, callback : NofloCallbackWithResult<unknown> ) : void;
+        addNode( node : Graph.Node, options : BaseNetwork.PropertyMap, callback : NofloCallbackWithResult<unknown> ) : void;
         removeNode( node : Graph.NodeID, callback : NofloCallback ) : void
         renameNode( oldId : Graph.NodeID, newId : Graph.NodeID, callback : NofloCallback ) : void;
         getNode( id : Graph.NodeID ) : BaseNetwork.Process;
