@@ -1,6 +1,6 @@
 {
   "name": "types-noflo",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "TypeScript type declarations for `noflo`",
   "main": "",
   "types": "noflo/index.d.ts",
