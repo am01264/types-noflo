@@ -1,8 +1,8 @@
 /// <reference path="InternalSocket.d.ts" />
 
-declare module "noflo/lib/BasePort" {
+declare module "noflo/src/lib/BasePort" {
     import { EventEmitter } from "events";
-    import {InternalSocket as Socket} from "noflo/lib/InternalSocket";
+    import {InternalSocket as Socket} from "noflo/src/lib/InternalSocket";
 
     export class BasePort extends EventEmitter {
         options : BasePort.Options;

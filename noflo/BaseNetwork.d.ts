@@ -3,14 +3,14 @@
 /// <reference path="Component.d.ts" />
 /// <reference path="IP.d.ts" />
 
-declare module "noflo/lib/BaseNetwork" {
+declare module "noflo/src/lib/BaseNetwork" {
     
     import {EventEmitter} from "events";
     
-    import {InternalSocket} from "noflo/lib/InternalSocket";
-    import {ComponentLoader} from "noflo/lib/ComponentLoader";
-    import {Component} from "noflo/lib/Component"
-    import {Ports} from "noflo/lib/Ports";
+    import {InternalSocket} from "noflo/src/lib/InternalSocket";
+    import {ComponentLoader} from "noflo/src/lib/ComponentLoader";
+    import {Component} from "noflo/src/lib/Component"
+    import {Ports} from "noflo/src/lib/Ports";
     import {Graph, Callback} from "fbp-graph/lib/graph";
 
     type NofloCallback = (err : Error | null) => void;

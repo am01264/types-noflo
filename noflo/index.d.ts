@@ -21,23 +21,23 @@ declare module "noflo" {
     import { Graph } from "fbp-graph";
     export { Graph, Journal } from "fbp-graph";
     
-    export {Network} from "noflo/lib/LegacyNetwork"
+    export {Network} from "noflo/src/lib/LegacyNetwork"
 
     export function isBrowser() : boolean;
     
-    export {ComponentLoader} from "noflo/lib/ComponentLoader"
+    export {ComponentLoader} from "noflo/src/lib/ComponentLoader"
  
-    export {Component} from "noflo/lib/Component";
+    export {Component} from "noflo/src/lib/Component";
 
-    export {InPorts, OutPorts} from "noflo/lib/Ports";
-    export {InPort} from "noflo/lib/InPort";
-    export {OutPort} from "noflo/lib/OutPort";
+    export {InPorts, OutPorts} from "noflo/src/lib/Ports";
+    export {InPort} from "noflo/src/lib/InPort";
+    export {OutPort} from "noflo/src/lib/OutPort";
 
-    export {InternalSocket as internalSocket} from "noflo/lib/InternalSocket";
+    export {InternalSocket as internalSocket} from "noflo/src/lib/InternalSocket";
 
-    export {IP} from "noflo/lib/IP";
+    export {IP} from "noflo/src/lib/IP";
 
-    import {Network} from "noflo/lib/Network"
+    import {Network} from "noflo/src/lib/Network"
     type CreateNetworkOptions = Partial<{ delay : boolean, subscribeGraph : boolean }>;
     type NetworkCallback = (err : Error | null, network? : Network ) => void;
     export function createNetwork(graph : Graph, callback : NetworkCallback) : Network;
@@ -49,8 +49,8 @@ declare module "noflo" {
 
     export function saveFile( graph : Graph, file : string, callback : (err : Error | null, filename? : string) => void) : void;
 
-    export {asCallback} from "noflo/lib/AsCallback";    
-    export {asComponent} from "noflo/lib/AsComponent";
+    export {asCallback} from "noflo/src/lib/AsCallback";    
+    export {asComponent} from "noflo/src/lib/AsComponent";
 
 }
 

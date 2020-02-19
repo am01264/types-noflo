@@ -2,10 +2,10 @@
 /// <reference path="IP.d.ts" />
 /// <reference path="InternalSocket.d.ts" />
 
-declare module "noflo/lib/OutPort" {
-    import {IP} from "noflo/lib/IP";
-    import {BasePort} from "noflo/lib/BasePort";
-    import {InternalSocket as Socket} from "noflo/lib/InternalSocket";
+declare module "noflo/src/lib/OutPort" {
+    import {IP} from "noflo/src/lib/IP";
+    import {BasePort} from "noflo/src/lib/BasePort";
+    import {InternalSocket as Socket} from "noflo/src/lib/InternalSocket";
 
     export class OutPort<DataType = any> extends BasePort {
         constructor(options? : Partial<OutPort.Options>);

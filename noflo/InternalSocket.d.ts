@@ -1,9 +1,9 @@
 /// <reference path="IP.d.ts" />
 
-declare module "noflo/lib/InternalSocket" {
+declare module "noflo/src/lib/InternalSocket" {
 
     import { EventEmitter } from "events";
-    import { IP } from "noflo/lib/IP"
+    import { IP } from "noflo/src/lib/IP"
     
     export class InternalSocket extends EventEmitter {
 

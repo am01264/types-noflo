@@ -1,9 +1,9 @@
 /// <reference path="Component.d.ts" />
 
-declare module "noflo/lib/ComponentLoader" {
+declare module "noflo/src/lib/ComponentLoader" {
     
     import { EventEmitter } from "events";
-    import { Component } from "noflo/lib/Component";
+    import { Component } from "noflo/src/lib/Component";
     import { Graph } from "fbp-graph"
 
     type NofloCallback = (err?: Error | null) => void;

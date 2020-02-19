@@ -1,10 +1,10 @@
 /// <reference path="Component.d.ts" />
 /// <reference path="ComponentLoader.d.ts" />
 
-declare module "noflo/lib/AsCallback" {
+declare module "noflo/src/lib/AsCallback" {
 
-    import {Component} from "noflo/lib/Component";
-    import {ComponentLoader} from "noflo/lib/ComponentLoader";
+    import {Component} from "noflo/src/lib/Component";
+    import {ComponentLoader} from "noflo/src/lib/ComponentLoader";
 
     interface PortInputs<_PortNames extends string = string> {
         [port: string]: any;

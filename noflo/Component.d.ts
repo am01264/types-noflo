@@ -2,12 +2,12 @@
 /// <reference path="Ports.d.ts" />
 /// <reference path="InPort.d.ts" />
 
-declare module "noflo/lib/Component" {
+declare module "noflo/src/lib/Component" {
     
     import { EventEmitter } from "events";
-    import { IP } from "noflo/lib/IP"
-    import { InPorts, OutPorts, Ports} from "noflo/lib/Ports";
-    import { InPort } from "noflo/lib/InPort";
+    import { IP } from "noflo/src/lib/IP"
+    import { InPorts, OutPorts, Ports} from "noflo/src/lib/Ports";
+    import { InPort } from "noflo/src/lib/InPort";
 
     export class Component<_InPorts extends string = "in" | string, _OutPorts extends string = "out" | "error" | string> extends EventEmitter {
         name : string;

@@ -1,8 +1,8 @@
 /// <reference path="Component.d.ts" />
 
-declare module "noflo/lib/AsComponent" {
+declare module "noflo/src/lib/AsComponent" {
 
-    import {Component} from "noflo/lib/Component";
+    import {Component} from "noflo/src/lib/Component";
 
     type NofloCallback<T> = (err? : Error | null, result? : T ) => void;
 

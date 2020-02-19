@@ -1,9 +1,9 @@
 /// <reference path="BaseNetwork.d.ts" />
 
-declare module "noflo/lib/LegacyNetwork" {
+declare module "noflo/src/lib/LegacyNetwork" {
     
     import {Graph} from "fbp-graph"
-    import {BaseNetwork} from "noflo/lib/BaseNetwork"
+    import {BaseNetwork} from "noflo/src/lib/BaseNetwork"
 
     export class Network extends BaseNetwork {
  
