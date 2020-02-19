@@ -3,7 +3,7 @@
   "version": "1.1.5",
   "description": "TypeScript type declarations for `noflo`",
   "main": "",
-  "types": "index.d.ts",
+  "types": "fbp-graph/index.d.ts",
   "repository": "https://github.com/am01264/types-noflo",
   "author": "Andrew McAuley <am01264@users.noreply.github.com>",
   "license": "MIT",
