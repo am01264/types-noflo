@@ -27,6 +27,8 @@ declare module "noflo/lib/Ports" {
 
     namespace Ports {
 
+        type PortID = string;
+
         export interface PortOptions {
             datatype : IP.DataType;
             description: string;
