@@ -1,14 +1,19 @@
-/// <reference path="AsCallback.d.ts" />
-/// <reference path="AsComponent.d.ts" />
-/// <reference path="BasePort.d.ts" />
 /// <reference path="Component.d.ts" />
-/// <reference path="InPort.d.ts" />
 /// <reference path="InternalSocket.d.ts" />
 /// <reference path="IP.d.ts" />
+
+/// <reference path="BasePort.d.ts" />
+/// <reference path="InPort.d.ts" />
 /// <reference path="OutPort.d.ts" />
 /// <reference path="Ports.d.ts" />
+
 /// <reference path="ComponentLoader.d.ts" />
+
 /// <reference path="LegacyNetwork.d.ts" />
+/// <reference path="Network.d.ts" />
+
+/// <reference path="AsCallback.d.ts" />
+/// <reference path="AsComponent.d.ts" />
 
 declare module "noflo" {
     
@@ -32,7 +37,6 @@ declare module "noflo" {
 
     export {IP} from "noflo/lib/IP";
 
-    // TODO: Network
     import {Network} from "noflo/lib/Network"
     type CreateNetworkOptions = Partial<{ delay : boolean, subscribeGraph : boolean }>;
     type NetworkCallback = (err : Error | null, network? : Network ) => void;
