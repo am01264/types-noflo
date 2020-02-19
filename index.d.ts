@@ -1,3 +1,12 @@
+/// <reference path="AsCallback.d.ts" />
+/// <reference path="AsComponent.d.ts" />
+/// <reference path="BasePort.d.ts" />
+/// <reference path="Component.d.ts" />
+/// <reference path="InPort.d.ts" />
+/// <reference path="InternalSocket.d.ts" />
+/// <reference path="IP.d.ts" />
+/// <reference path="OutPort.d.ts" />
+/// <reference path="Ports.d.ts" />
 
 declare module "noflo" {
     
