@@ -9,6 +9,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "@types/node": "^13.7.2",
     "types-fbp-graph": "^0.4.0"
   }
 }
