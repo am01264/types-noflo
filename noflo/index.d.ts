@@ -7,6 +7,7 @@
 /// <reference path="IP.d.ts" />
 /// <reference path="OutPort.d.ts" />
 /// <reference path="Ports.d.ts" />
+/// <reference path="ComponentLoader.d.ts" />
 
 declare module "noflo" {
     

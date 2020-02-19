@@ -1,4 +1,5 @@
 /// <reference path="Component.d.ts" />
+/// <reference path="ComponentLoader.d.ts" />
 
 declare module "noflo/lib/AsCallback" {
 
