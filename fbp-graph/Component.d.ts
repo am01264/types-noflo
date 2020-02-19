@@ -1,3 +1,6 @@
+/// <reference path="IP.d.ts" />
+/// <reference path="Ports.d.ts" />
+/// <reference path="InPort.d.ts" />
 
 declare module "noflo/lib/Component" {
     

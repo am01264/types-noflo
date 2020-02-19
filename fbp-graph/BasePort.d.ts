@@ -1,3 +1,4 @@
+/// <reference path="InternalSocket.d.ts" />
 
 declare module "noflo/lib/BasePort" {
     import { EventEmitter } from "events";

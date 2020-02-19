@@ -1,3 +1,5 @@
+/// <reference path="IP.d.ts" />
+
 declare module "noflo/lib/InternalSocket" {
 
     import { EventEmitter } from "events";

@@ -1,7 +1,11 @@
+/// <reference path="IP.d.ts" />
+/// <reference path="BasePort.d.ts" />
+/// <reference path="InternalSocket.d.ts" />
+
 declare module "noflo/lib/InPort" {
     import {IP} from "noflo/lib/IP";
     import {BasePort} from "noflo/lib/BasePort";
-    import {Socket} from "noflo/lib/InternalSocket";
+    import {InternalSocket as Socket} from "noflo/lib/InternalSocket";
 
     export class InPort<DataType = any> extends BasePort {
         scopedBuffer : {[key : string] : IP<DataType>[]} | undefined;

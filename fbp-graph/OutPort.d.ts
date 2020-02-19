@@ -1,3 +1,7 @@
+/// <reference path="BasePort.d.ts" />
+/// <reference path="IP.d.ts" />
+/// <reference path="InternalSocket.d.ts" />
+
 declare module "noflo/lib/OutPort" {
     import {IP} from "noflo/lib/IP";
     import {BasePort} from "noflo/lib/BasePort";

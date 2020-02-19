@@ -1,6 +1,8 @@
+/// <reference path="Component.d.ts" />
+
 declare module "noflo/lib/IP" {
 
-    import {Component} from "noflo"
+    import {Component} from "noflo/lib/Component"
 
     export class IP<_Data = any> {
 

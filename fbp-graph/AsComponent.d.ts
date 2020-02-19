@@ -1,3 +1,5 @@
+/// <reference path="Component.d.ts" />
+
 declare module "noflo/lib/AsComponent" {
 
     import {Component} from "noflo/lib/Component";
