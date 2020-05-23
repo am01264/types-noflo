@@ -9,17 +9,17 @@ declare module "noflo/src/lib/Component" {
     import { InPorts, OutPorts, Ports} from "noflo/src/lib/Ports";
     import { InPort } from "noflo/src/lib/InPort";
 
-    export class Component<_InPorts extends string = "in" | string, _OutPorts extends string = "out" | "error" | string> extends EventEmitter {
+    export class Component<_InPortNames extends string = string, _OutPortNames extends string = string> extends EventEmitter {
         name : string;
         description : string;
         icon : string;
 
-        constructor( options? : Component.ConstructorOptions<_InPorts,_OutPorts> );
+        constructor( options? : Component.ConstructorOptions<_InPortNames,_OutPortNames> );
         
-        outPorts : OutPorts<_OutPorts>
-        inPorts : InPorts<_InPorts>
+        outPorts : OutPorts<_OutPortNames>
+        inPorts : InPorts<_InPortNames>
         
-        process( handler : Component.ProcessHandler<_InPorts, _OutPorts> ) : void;
+        process( handler : Component.ProcessHandler<_InPortNames, _OutPortNames> ) : void;
     }
 
     
