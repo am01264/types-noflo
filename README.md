@@ -1,10 +1,8 @@
 # types-noflo
 TypeScript type declarations for `noflo`
 
-## Warning
-While I've tried to make this as accurate as possible, errors may have been made.
-
-If you find a discrepancy, [file an issue](https://github.com/am01264/types-fbp-graph/issues/new) and I'll fix it.
+**Warning:** While I've tried to make this as accurate as possible, errors may have been made. 
+If you find a discrepancy, [file an issue](https://github.com/am01264/types-fbp-graph/issues/new) and I'll fix it for you.
 
 ## How To Use
 
