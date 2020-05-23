@@ -12,7 +12,7 @@ If you find a discrepancy, [file an issue](https://github.com/am01264/types-fbp-
 Install into your project with `npm` as follows:
 
 ```sh
-$ npm install types-fbp-graph
+$ npm install types-noflo
 ```
 
 ### Step 2: Include `typeRoots` in your `tsconfig.json`
