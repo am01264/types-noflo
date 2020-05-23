@@ -18,7 +18,7 @@ declare module "noflo/src/lib/Ports" {
     
         constructor( ports : Ports.PortConstructorOptions<_PortNames> );
     
-        add( name : _PortNames, options : Partial<Ports.PortOptions>, process : Component) : this
+        add( name : _PortNames, options : Partial<Ports.PortOptions>, process? : Component) : this
         remove( name : _PortNames ) : this
 
         on(event: 'add', listener : (name : string) => void) : this;
