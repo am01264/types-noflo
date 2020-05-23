@@ -7,7 +7,7 @@ declare module "noflo/src/lib/IP" {
     export class IP<_Data = any> {
 
         _isIP : true;
-        scope : null; // TODO Identify scope type
+        scope : IP.Scope;
         owner : Component | null;
         clonable : boolean;
         index : number | null;
@@ -45,6 +45,8 @@ declare module "noflo/src/lib/IP" {
             | 'object'
             | 'stream'
             | 'string' 
+
+        type Scope = string | null;
 
         type ConstructorOptions = {[key : string] : any};
 

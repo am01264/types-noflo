@@ -21,11 +21,17 @@ declare module "noflo/src/lib/Component" {
         
         process( handler : Component.ProcessHandler<_InPorts, _OutPorts> ) : void;
     }
-    
 
+    
     namespace Component {
 
-        export type ProcessHandler<_InPorts extends string, _OutPorts extends string> = ( input : ProcessInput<_InPorts>, output : ProcessOutput<_OutPorts> ) => void
+        export interface ProcessHandler<_InPorts extends string, _OutPorts extends string, _ComponentType extends Component = Component> {
+            ( 
+                input : ProcessInput<_InPorts>, 
+                output : ProcessOutput<_OutPorts>, 
+                context? : ProcessContext<_ComponentType>
+            ) : void
+        }
 
         export type ConstructorOptions<_InPorts extends string, _OutPorts extends string> = Partial<{
             inPorts : Ports.PortConstructorOptions<_InPorts>,
@@ -66,6 +72,25 @@ declare module "noflo/src/lib/Component" {
             send( map : OutputMap<_OutPorts> ) : void;
             sendDone( map : OutputMap<_OutPorts> ) : void;
             done( error? : Error | Error[] ) : void;
+        }
+
+        export interface ProcessContext<ComponentType extends Component = Component> {
+
+            ip : IP;
+            nodeInstance : ComponentType;
+            port : InPort;
+            result : ProcessContextResultType;
+            scope : IP.Scope;
+            activated : boolean;
+            deactivated : boolean;
+    
+            activate() : unknown;
+            deactivate() : unknown;
+        }
+
+        type ProcessContextResultType = {
+            // n.b. __resolved and __bracketClosingAfter are reserved names used internally
+            [ key : string ] : Array<any>;
         }
 
     }
