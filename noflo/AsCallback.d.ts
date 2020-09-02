@@ -6,7 +6,7 @@ declare module "noflo/src/lib/AsCallback" {
 
     import {Component} from "noflo/src/lib/Component";
     import {ComponentLoader} from "noflo/src/lib/ComponentLoader";
-    export {Network} from "noflo/src/lib/LegacyNetwork"
+    import {Network} from "noflo/src/lib/LegacyNetwork"
 
     interface PortInputs<_PortNames extends string = string> {
         [port: string]: any;
