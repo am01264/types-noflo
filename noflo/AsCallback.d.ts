@@ -4,9 +4,9 @@
 
 declare module "noflo/src/lib/AsCallback" {
 
-    import {Component} from "noflo/src/lib/Component";
     import {ComponentLoader} from "noflo/src/lib/ComponentLoader";
-    import {Network} from "noflo/src/lib/LegacyNetwork"
+    import {Network} from "noflo/src/lib/Network"
+    import {Graph} from "fbp-graph";
 
     interface PortInputs<_PortNames extends string = string> {
         [port: string]: any;
@@ -34,12 +34,13 @@ declare module "noflo/src/lib/AsCallback" {
 
     type NofloCallback<T> = (err : Error | null, result? : T) => void;
     type NetworkCallbackOption = (network : Network) => void;
-
+    
     interface CallbackResponse<_InPortNames extends string = string, _OutPortNames extends string = string> {
-        // TODO: Use Generics for port-name autocompletion 
-        // (requires a future version of Typescript)
+        // Unable to use Generics for port-name autocompletion here as the only
+        // context we have is either a component name (string) or graph to work
+        // with.
 
-        ( inputs : PortInputs<_InPortNames>, callback : NofloCallback<PortOutputs<_OutPortNames>> ) : void;
+        ( inputs : PortInputs, callback : NofloCallback<PortOutputs> ) : void;
     }
 
     interface CallbackOptions {
@@ -52,9 +53,6 @@ declare module "noflo/src/lib/AsCallback" {
     
     export function asCallback(component : string, options? : Partial<CallbackOptions>) : CallbackResponse;
     
-    export function asCallback<_InPortNames extends string, _OutPortNames extends string>(
-        component : Component<_InPortNames,_OutPortNames>, 
-        options? : Partial<CallbackOptions>
-        ) : CallbackResponse<_InPortNames, _OutPortNames>
+    export function asCallback(graph : Graph, options? : Partial<CallbackOptions>) : CallbackResponse;
 
 }
