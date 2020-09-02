@@ -1,10 +1,12 @@
 /// <reference path="Component.d.ts" />
 /// <reference path="ComponentLoader.d.ts" />
+/// <reference path="Network.d.ts" />
 
 declare module "noflo/src/lib/AsCallback" {
 
     import {Component} from "noflo/src/lib/Component";
     import {ComponentLoader} from "noflo/src/lib/ComponentLoader";
+    export {Network} from "noflo/src/lib/LegacyNetwork"
 
     interface PortInputs<_PortNames extends string = string> {
         [port: string]: any;
@@ -31,6 +33,7 @@ declare module "noflo/src/lib/AsCallback" {
     }
 
     type NofloCallback<T> = (err : Error | null, result? : T) => void;
+    type NetworkCallbackOption = (network : Network) => void;
 
     interface CallbackResponse<_InPortNames extends string = string, _OutPortNames extends string = string> {
         // TODO: Use Generics for port-name autocompletion 
@@ -44,6 +47,7 @@ declare module "noflo/src/lib/AsCallback" {
         baseDir : string;
         loader : ComponentLoader;
         raw : boolean;
+        networkCallback: NetworkCallbackOption;
     }
     
     export function asCallback(component : string, options? : Partial<CallbackOptions>) : CallbackResponse;
